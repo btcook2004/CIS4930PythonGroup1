@@ -1,7 +1,7 @@
 # CIS4930PythonGroup1
 # a brief description of project
 # instructions on how to set up and run project
-# ano other relevant information
+# any other relevant information
 # sample:
 
 ```markdown
