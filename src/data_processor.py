@@ -10,7 +10,24 @@ class DataProcessor:
   def load_data(self) -> pd.DataFrame:
     self.df = pd.read_csv(self.file_path)
     return self.df
-
+  # since out data doesn't have category of hurricane we use the magnitude of the storm
+  # which is wind speed in kph to determine category
+  # if there is no wind speed given the storm is classified as a depression
+  def hurricane_cat(magnitude):
+    if 63 <= magnitude < 119:
+      return "Tropical Storm"
+    elif 119 <= magnitude < 154:
+      return "Category 1"
+    elif 154 <= magnitude < 178:
+      return "Category 2"
+    elif 178 <= magnitude < 209:
+      return "Category 3"
+    elif 209 <= magnitude < 252:
+      return "Category 4"
+    elif magnitude >= 252:
+      return "Category 5"
+    else:
+      return "Depression"
   def clean_data(self) -> pd.DataFrame:
     # make sure data has been loaded
     if self.df is None:
@@ -21,12 +38,15 @@ class DataProcessor:
                       ]
     # keep only these columns (this can be changed if we need other columns)
     columns_to_keep = [
-        "DisNo.", "Disaster Type", "Disaster Subtype", "ISO", "Event Name",
+        "DisNo.", "Disaster Type", "Disaster Subtype", "ISO", "Event Name", "Magnitude", "Magnitude Scale",
         "Total Deaths", "Total Affected", "Total Damage ('000 US$)", 
-        "Total Damage, Adjusted ('000 US$)", "Entry Date", "Last Update"
+        "Total Damage, Adjusted ('000 US$)"
     ]
     # make data frame only have the columns we want and return
     self.df = self.df[columns_to_keep]
+
+    # adds a Category of Storm section to the csv
+    self.df['Hurricane Category'] = self.df['Magnitude'].apply(DataProcessor.hurricane_cat)
     return self.df
   def get_features_and_target(self) -> tuple[np.ndarray, np.ndarray]:
     # make sure data is clean and loaded
@@ -37,8 +57,6 @@ class DataProcessor:
     # also get the Total Damage adjusted for inflation
     target = self.df["Total Damage, Adjusted ('000 US$)"]. fillna(0).values
     return features, target
-
-
 # Example usage:
 # processor = DataProcessor("data/naturalDisaster.csv")
 # processor.load_data()
