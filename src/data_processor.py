@@ -38,13 +38,13 @@ class DataProcessor:
                       ]
     # keep only these columns (this can be changed if we need other columns)
     columns_to_keep = [
-        "DisNo.", "Disaster Type", "Disaster Subtype", "ISO", "Event Name", "Magnitude", "Magnitude Scale",
+        "DisNo.", "Disaster Type", "Start Year", "Disaster Subtype", "ISO", "Event Name", "Magnitude", "Magnitude Scale",
         "Total Deaths", "Total Affected", "Total Damage ('000 US$)", 
         "Total Damage, Adjusted ('000 US$)"
     ]
     # make data frame only have the columns we want and return
     self.df = self.df[columns_to_keep]
-
+    self.df = self.df[self.df["Magnitude"].notna() & (self.df["Magnitude"] != 0)]
     # adds a Category of Storm section to the csv
     self.df['Hurricane Category'] = self.df['Magnitude'].apply(DataProcessor.hurricane_cat)
     return self.df
@@ -53,9 +53,9 @@ class DataProcessor:
     if self.df is None:
       raise ValueError("Data must be loaded and cleaned before extracting features and target.")
     # gets certain pieces of the data frame
-    features = self.df [["Total Deaths", "Total Affected", "Total Damage ('000 US$)"]].fillna(0).values
+    features = self.df [['Magnitude', 'Start Year', "Total Damage ('000 US$)"]].fillna(0).values
     # also get the Total Damage adjusted for inflation
-    target = self.df["Total Damage, Adjusted ('000 US$)"]. fillna(0).values
+    target = self.df["Magnitude"]. fillna(0).values
     return features, target
 # Example usage:
 # processor = DataProcessor("data/naturalDisaster.csv")
