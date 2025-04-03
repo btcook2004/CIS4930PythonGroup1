@@ -53,7 +53,7 @@ class DataProcessor:
     if self.df is None:
       raise ValueError("Data must be loaded and cleaned before extracting features and target.")
     # gets certain pieces of the data frame
-    features = self.df [['Magnitude', 'Start Year', "Total Damage ('000 US$)"]].fillna(0).values
+    features = self.df [["Magnitude", "Start Year", "Total Damage, Adjusted ('000 US$)"]].fillna(0).values
     # also get the Total Damage adjusted for inflation
     target = self.df["Magnitude"]. fillna(0).values
     return features, target

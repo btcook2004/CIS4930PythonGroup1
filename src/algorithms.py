@@ -51,6 +51,7 @@ class HurricaneClustering(BaseEstimator, ClusterMixin):
         return self.model.predict(X)
     
 class HurricaneAnomalyDetector(BaseEstimator, OutlierMixin):
+    # Anomalies are detect by wind speed and total damage
     def __init__(self, contamination=0.1):
         self.contamination = contamination
         self.model = LocalOutlierFactor(contamination=self.contamination)
