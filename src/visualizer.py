@@ -66,20 +66,3 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     # ax.set_title('Wind Speed Predictions with Anomalies')
     # ax.legend()
     # plt.show()
-    
-# if __name__ == "__main__":
-#   #trend vs predicted test
-#   years = [2000, 2001, 2002, 2003, 2004, 2005]
-#   temperatures = [14.1, 14.3, 14.5, 14.6, 14.8, 15.0]
-#   predictions = [14.2, 14.4, 14.6, 14.7, 14.9, 15.1] 
-#   Visualizer.plot_temperature_trend(years, temperatures, predictions)
-
-# #cluster test
-# data = [(1, 2), (2, 3), (3, 4), (10, 10), (11, 12), (12, 13)]
-# labels = [0, 0, 0, 1, 1, 1] 
-# Visualizer.plot_clustered_data(data, labels)
-
-#   #anomalies test
-#   time_series = [10, 12, 13, 15, 50, 13, 12, 11, 10, 50, 12, 13, 14, 15, 16]
-#   anomalies = [False, False, False, False, True, False, False, False, False, True, False, False, False, False, False]
-#   Visualizer.plot_anomalies(time_series, anomalies)
