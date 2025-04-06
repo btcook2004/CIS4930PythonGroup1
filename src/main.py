@@ -17,7 +17,7 @@ def main():
   X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=2)
 
 # prints the first 5 features or targets for testing
-  print("Features: ", x[:15])
+  print("Features: ", x[:83])
   print("Target:", y)
 
 # Temperature prediction
@@ -48,9 +48,10 @@ def main():
   #Anomalies graph
   Visualizer.plot_anomalies(X_train, anomaly_detector.predict(X_test))
   #clustering graph
+  print(model.predict(X_test))
   Visualizer.plot_clustered_data(X_test, clustering.predict(X_test))
   #Predictions Graph
-  Visualizer.plot_windspeed_trend(X_test,model.predict(X_test))
+  Visualizer.plot_windspeed_trend(x,model.predict(X_test))
 
 
 

@@ -8,11 +8,17 @@ from typing import List, Tuple
 class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
   @staticmethod
   def plot_windspeed_trend(data: List[List[float]], predictions: List[float]) -> None:
+    print("Testing poop")
     windSpeeds = [item[0] for item in data]
     years = [item[1] for item in data]
-    plt.figure(figsize=(8, 6))
+    predictYears = []
+    startPredict = 2024
+    for _ in predictions:
+      startPredict = startPredict + 1
+      predictYears.append(startPredict)
+    plt.figure(figsize=(10, 6))
     plt.plot(years, windSpeeds, label='Observed Wind Speeds', color='blue')
-    plt.plot(years, predictions, label='Predicted Wind Speeds', color='red', linestyle='--')
+    plt.plot(predictYears, predictions, label='Predicted Wind Speeds', color='red', linestyle='--')
     plt.xlabel('Year')
     plt.ylabel('Wind Speed (kph)')
     plt.title('Wind Speed Trends Over Time')
