@@ -6,12 +6,12 @@ import mplcursors
 from typing import List, Tuple
 
 #Visualization type: Line Graph 
-class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
+class Visualizer: 
   @staticmethod
   def plot_windspeed_trend(data: List[List[float]], predictions: List[float]) -> None:
     windSpeeds = [item[0] for item in data]
     years = [item[1] for item in data]
-    z = [item[2] for item in data]
+    damage = [item[2] for item in data]
     predictYears = []
     startPredict = 2024
     for _ in predictions:
@@ -19,7 +19,7 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
       predictYears.append(startPredict)
     plt.figure(figsize=(8, 6))
     line = plt.plot(years, windSpeeds, label='Observed Wind Speeds', color='blue')
-    plt.plot(predictYears, predictions, label='Predicted Wind Speeds', color='red', linestyle='--')
+    plt.plot(predictYears, predictions, label='Predicted Wind Speeds', color='red' )
     plt.xlabel('Year')
     plt.ylabel('Wind Speed (kph)')
     plt.title('Wind Speed Trends Over Time')
@@ -28,26 +28,26 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     cursor = mplcursors.cursor(line, hover=True)
     @cursor.connect("add")
     def on_hover(sel):
-      sel.annotation.set_text(f"Damage: ${z[int(sel.index)]} ")
+      sel.annotation.set_text(f"Damage: ${damage[int(sel.index)]} ")
     plt.show()
 
 #Visualization Type: Scatter Plot
   @staticmethod
   def plot_clustered_data(data: List[List[float]], labels: List[float]) -> None:
-    y = [item[0] for item in data]
-    x = [item[1] for item in data]
-    z = [item[2] for item in data]
+    windSpeeds = [item[0] for item in data]
+    years = [item[1] for item in data]
+    damage = [item[2] for item in data]
     plt.figure(figsize=(10, 6))
-    y = np.array(y)
-    x = np.array(x)
-    z = np.array(z)
+    windSpeeds = np.array(windSpeeds)
+    years = np.array(years)
+    damage = np.array(damage)
     labels = np.array(labels)
-    mask = z != 0
-    z_filtered = z[mask]
-    y_filtered = y[mask]
-    x_filitered = x[mask]
+    mask = damage != 0
+    damage_filtered = damage[mask]
+    windSpeeds_filtered = windSpeeds[mask]
+    years_filitered = years[mask]
     labels_filtered = labels[mask]
-    scatter = plt.scatter(z_filtered, y_filtered, c=labels_filtered)
+    scatter = plt.scatter(damage_filtered, windSpeeds_filtered, c=labels_filtered)
     plt.xlabel('Damage (USD)')
     plt.ylabel('Wind Speed (kph)')
     plt.title('Clustered Data Visualization')
@@ -56,7 +56,7 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     cursor = mplcursors.cursor(scatter, hover=True)
     @cursor.connect("add")
     def on_hover(sel):
-      sel.annotation.set_text(f"Year: {x_filitered[sel.index]}")
+      sel.annotation.set_text(f"Year: {years_filitered[sel.index]}")
     plt.show()
   
 
