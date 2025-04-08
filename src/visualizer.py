@@ -4,6 +4,8 @@ import seaborn as sns
 import numpy as np 
 import mplcursors
 from typing import List, Tuple
+from matplotlib.colors import ListedColormap
+from matplotlib.lines import Line2D
 
 #Visualization type: Line Graph 
 class Visualizer: 
@@ -17,12 +19,12 @@ class Visualizer:
     for _ in predictions:
       startPredict = startPredict + 1
       predictYears.append(startPredict)
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 6))
     line = plt.plot(years, windSpeeds, label='Observed Wind Speeds', color='blue')
     plt.plot(predictYears, predictions, label='Predicted Wind Speeds', color='red' )
     plt.xlabel('Year')
     plt.ylabel('Wind Speed (kph)')
-    plt.title('Wind Speed Trends Over Time')
+    plt.title('Hurricane Wind Speed Over Time with Predictions')
     plt.legend()
     plt.grid(True)
     cursor = mplcursors.cursor(line, hover=True)
@@ -47,19 +49,24 @@ class Visualizer:
     windSpeeds_filtered = windSpeeds[mask]
     years_filitered = years[mask]
     labels_filtered = labels[mask]
-    scatter = plt.scatter(damage_filtered, windSpeeds_filtered, c=labels_filtered)
+    colors= ['blue', 'red']
+    cmap = ListedColormap(colors)
+    scatter = plt.scatter(damage_filtered, windSpeeds_filtered, c=labels_filtered, cmap=cmap, s=50)
+    legend_elements = [
+      Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=10, label='Cluster 0'),
+      Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=10, label='Cluster 1'),
+    ]
+    plt.legend(handles=legend_elements, title='Cluster Key')
     plt.xlabel('Damage (USD)')
     plt.ylabel('Wind Speed (kph)')
-    plt.title('Clustered Data Visualization')
-    plt.colorbar(scatter, label='Cluster Label')
+    plt.title('Hurricane Wind Speed impact on Economic Damage across Different Severity Clusters ')
     plt.grid(True)
     cursor = mplcursors.cursor(scatter, hover=True)
     @cursor.connect("add")
     def on_hover(sel):
-      sel.annotation.set_text(f"Year: {years_filitered[sel.index]}")
+      sel.annotation.set_text(f"Year: {int(years_filitered[sel.index])}")
     plt.show()
   
-
 #Visualization Type: Bar Graph
   @staticmethod
   def plot_anomalies(data: List[List[float]], anomalies: List[bool]) -> None:
