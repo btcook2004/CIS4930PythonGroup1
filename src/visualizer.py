@@ -37,9 +37,18 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     y = [item[0] for item in data]
     x = [item[1] for item in data]
     z = [item[2] for item in data]
-    plt.figure(figsize=(8, 6))
-    scatter = plt.scatter(x, y, c=labels, cmap='viridis', edgecolor='k')
-    plt.xlabel('Year')
+    plt.figure(figsize=(10, 6))
+    y = np.array(y)
+    x = np.array(x)
+    z = np.array(z)
+    labels = np.array(labels)
+    mask = z != 0
+    z_filtered = z[mask]
+    y_filtered = y[mask]
+    x_filitered = x[mask]
+    labels_filtered = labels[mask]
+    scatter = plt.scatter(z_filtered, y_filtered, c=labels_filtered)
+    plt.xlabel('Damage (USD)')
     plt.ylabel('Wind Speed (kph)')
     plt.title('Clustered Data Visualization')
     plt.colorbar(scatter, label='Cluster Label')
@@ -47,7 +56,7 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     cursor = mplcursors.cursor(scatter, hover=True)
     @cursor.connect("add")
     def on_hover(sel):
-      sel.annotation.set_text(f"Damage: ${z[sel.index]}")
+      sel.annotation.set_text(f"Year: {x_filitered[sel.index]}")
     plt.show()
   
 
@@ -56,7 +65,7 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
   def plot_anomalies(data: List[List[float]], anomalies: List[bool]) -> None:
     windSpeeds = [item[0] for item in data]
     years = [item[1] for item in data]
-    z = [item[2] for item in data]
+    damage = [item[2] for item in data]
     indices = list(range(len(windSpeeds)))
     fig, ax = plt.subplots(figsize=(8, 6))
     bars = ax.bar(indices, windSpeeds, color='blue')
@@ -70,21 +79,5 @@ class Visualizer: #NEEDS TO ACTUALLY PREDICT FUTURE
     cursor = mplcursors.cursor(bars, hover=True)
     @cursor.connect("add")
     def on_hover(sel):
-      sel.annotation.set_text(f"Damage: ${z[sel.index]}")
+      sel.annotation.set_text(f"Damage: ${damage[sel.index]}")
     plt.show()
-
-    # windSpeeds = [item[0] for item in data]
-    # years = [item[1] for item in data]
-    # indices = list(range(len(years)))
-    # fig, ax = plt.subplots(figsize=(8, 6))
-    # ax.bar(years, windSpeeds, color='blue')
-    # anomaly_indices = [i for i, is_anomaly in enumerate(anomalies) if is_anomaly == -1]
-    # anomaly_values = [windSpeeds[i] for i in anomaly_indices]
-    # selectedYears = [years[i] for i in anomaly_indices] 
-    # print(selectedYears) 
-    # ax.bar(selectedYears, anomaly_values, color='red', label='Anomalies')
-    # ax.set_xlabel('Index')
-    # ax.set_ylabel('Wind Speed (kph)')
-    # ax.set_title('Wind Speed Predictions with Anomalies')
-    # ax.legend()
-    # plt.show()

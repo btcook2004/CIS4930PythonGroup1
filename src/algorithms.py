@@ -37,9 +37,10 @@ class WindSpeedPredictor(BaseEstimator, RegressorMixin):
         return self.model.predict(X)
     
 class HurricaneClustering(BaseEstimator, ClusterMixin):
-    def __init__(self, n_clusters=3):
+    def __init__(self, n_clusters=2):
         self.n_clusters = n_clusters
         self.model = KMeans(n_clusters=self.n_clusters)
+        print(f"Self Model = {self.n_clusters}")
 
     def fit(self, X, y=None):
         """Finds clusters in hurricane data."""
