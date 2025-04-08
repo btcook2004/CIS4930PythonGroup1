@@ -1,18 +1,3 @@
-CIS4930PythonGroup1
-
-Notes from the first group meeting: 
-- severe weather events realted to ocean temps, atmospheric temps, and atmospheric pressure
-- severe weather broken into:
-  - hurricanes
-  - wildfires
-  - tornadoes
-  - blizzards
-
-a brief description of project
-instructions on how to set up and run project
-and other relevant information
-sample:
-
 ```markdown
 # Climate Change Impact Analyzer
 
