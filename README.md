@@ -32,7 +32,6 @@ python -m unittest discover tests
 - `requirements.txt`: Project dependencies
 - `README.md`: Project documentation
 ## Project features
+- 
 -
 -
--
-....
