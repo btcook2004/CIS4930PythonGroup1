@@ -20,7 +20,6 @@ python src/main.py
 
 Or use the command-line interface:
 python src/cli.py
-<!-- python src/cli.py -- data data/climate_data.csv -- action predict -->
 
 ## Running Tests
 
