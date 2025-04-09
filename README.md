@@ -16,12 +16,11 @@ This project analyzes climate data, implements predictive algorithms, and visual
 ## USage
 
 Run the main script:
-
 python src/main.py
 
 Or use the command-line interface:
-
-python src/cli.py -- data data/climate_data.csv -- action predict
+python src/cli.py
+<!-- python src/cli.py -- data data/climate_data.csv -- action predict -->
 
 ## Running Tests
 
