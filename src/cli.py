@@ -65,8 +65,7 @@ def main():
          elif view_choice == "2":
             model = WindSpeedPredictor()
             model.fit(X_train, y_train)
-            predictions = model.predict(X_test)
-            Visualizer.plot_windspeed_trend(X_test, predictions) 
+            Visualizer.plot_windspeed_trend(x,model.predict(X_test))
 
          elif view_choice == "3":
             clustering = HurricaneClustering(n_clusters=2)
