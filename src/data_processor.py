@@ -8,7 +8,12 @@ class DataProcessor:
     self.df = None
   # read the csv and put it in the self.df DataFrame
   def load_data(self) -> pd.DataFrame:
-    self.df = pd.read_csv(self.file_path)
+    try:
+      self.df = pd.read_csv(self.file_path)
+    except FileNotFoundError:
+      print(f"File not found: {self.file_path}")
+    except Exception as e:
+      print(f"Error loading file: {self.file_path}")
     return self.df
   # since out data doesn't have category of hurricane we use the magnitude of the storm
   # which is wind speed in kph to determine category

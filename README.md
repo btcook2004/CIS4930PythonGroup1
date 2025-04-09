@@ -1,19 +1,5 @@
-CIS4930PythonGroup1
-
-Notes from the first group meeting: 
-- severe weather events realted to ocean temps, atmospheric temps, and atmospheric pressure
-- severe weather broken into:
-  - hurricanes
-  - wildfires
-  - tornadoes
-  - blizzards
-
-a brief description of project
-instructions on how to set up and run project
-and other relevant information
-sample:
-
 ```markdown
+#NOT DONE
 # Climate Change Impact Analyzer
 
 This project analyzes climate data, implements predictive algorithms, and visualizes results.
@@ -30,12 +16,10 @@ This project analyzes climate data, implements predictive algorithms, and visual
 ## USage
 
 Run the main script:
-
 python src/main.py
 
 Or use the command-line interface:
-
-python src/cli.py -- data data/climate_data.csv -- action predict
+python src/cli.py
 
 ## Running Tests
 
@@ -48,7 +32,6 @@ python -m unittest discover tests
 - `requirements.txt`: Project dependencies
 - `README.md`: Project documentation
 ## Project features
+- 
 -
 -
--
-....
