@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from data_processor import DataProcessor
 from algorithms import WindSpeedPredictor, HurricaneClustering, HurricaneAnomalyDetector
 from visualizer import Visualizer 
+
 def main():
   # Load and preprocess data
   file_path = "data/naturalDisaster.csv"
@@ -50,7 +51,6 @@ def main():
   Visualizer.plot_clustered_data(X_test, clustering.predict(X_test))
   #Predictions Graph
   Visualizer.plot_windspeed_trend(x,model.predict(X_test))
-
 
 
 if __name__ == "__main__":
