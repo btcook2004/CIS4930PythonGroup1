@@ -18,21 +18,6 @@ class DataProcessor:
   # since out data doesn't have category of hurricane we use the magnitude of the storm
   # which is wind speed in kph to determine category
   # if there is no wind speed given the storm is classified as a depression
-  def hurricane_cat(magnitude):
-    if 63 <= magnitude < 119:
-      return "Tropical Storm"
-    elif 119 <= magnitude < 154:
-      return "Category 1"
-    elif 154 <= magnitude < 178:
-      return "Category 2"
-    elif 178 <= magnitude < 209:
-      return "Category 3"
-    elif 209 <= magnitude < 252:
-      return "Category 4"
-    elif magnitude >= 252:
-      return "Category 5"
-    else:
-      return "Depression"
   def clean_data(self) -> pd.DataFrame:
     # make sure data has been loaded
     if self.df is None:
@@ -51,7 +36,6 @@ class DataProcessor:
     self.df = self.df[columns_to_keep]
     self.df = self.df[self.df["Magnitude"].notna() & (self.df["Magnitude"] != 0)]
     # adds a Category of Storm section to the csv
-    self.df['Hurricane Category'] = self.df['Magnitude'].apply(DataProcessor.hurricane_cat)
     return self.df
   def get_features_and_target(self) -> tuple[np.ndarray, np.ndarray]:
     # make sure data is clean and loaded
@@ -62,8 +46,3 @@ class DataProcessor:
     # also get the Total Damage adjusted for inflation
     target = self.df["Magnitude"]. fillna(0).values
     return features, target
-# Example usage:
-# processor = DataProcessor("data/naturalDisaster.csv")
-# processor.load_data()
-# processor.clean_data()
-# X, y = processor.get_features_and_target()

@@ -4,22 +4,8 @@ from sklearn.model_selection import train_test_split
 from data_processor import DataProcessor
 from algorithms import WindSpeedPredictor, HurricaneClustering, HurricaneAnomalyDetector
 from visualizer import Visualizer 
-# from src.algorithms import CustomTemperaturePredictor, custom_clustering, detect_anomalies
-# from src.visualizer import Visualizer
 
 def main():
-  # ...
-
-  # #Load and preprocess data
-  # ...
-
-  # if args.action == "predict":
-  #   ...
-  # elif args.action == "cluster":
-  #   ...
-  # elif args.action == "anomalies":
-  #   ...
-
   clean_data = None
 
   while True:
@@ -92,7 +78,6 @@ def main():
     else:
       print("Invalid choice, try again")
     
-                
 
 if __name__ == "__main__":
         main()
