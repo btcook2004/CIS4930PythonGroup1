@@ -56,14 +56,14 @@ def main():
          elif view_choice == "3":
             clustering = HurricaneClustering(n_clusters=2)
             clustering.fit(X_train)
-            Visualizer.plot_clustered_data(X_test, clustering.predict(X_test))
+            Visualizer.plot_clustered_data(x, clustering.predict(x))
 
          elif view_choice == "4":
             n_neighbors = min(10, len(X_train) - 1)
             anomaly_detector = HurricaneAnomalyDetector(contamination=0.2)
             anomaly_detector.model.set_params(n_neighbors=n_neighbors)
             anomaly_detector.fit(X_train)
-            Visualizer.plot_anomalies(X_train, anomaly_detector.predict(X_test))
+            Visualizer.plot_anomalies(x, anomaly_detector.predict(x))
           
          elif view_choice == "5":
             break

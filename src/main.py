@@ -46,9 +46,9 @@ def main():
   print("Anomalies: ", anomaly_detector.predict(X_test))
 
   #Anomalies graph
-  Visualizer.plot_anomalies(X_train, anomaly_detector.predict(X_train))
+  Visualizer.plot_anomalies(x, anomaly_detector.predict(x))
   #clustering graph
-  Visualizer.plot_clustered_data(X_test, clustering.predict(X_test))
+  Visualizer.plot_clustered_data(x, clustering.predict(x))
   #Predictions Graph
   Visualizer.plot_windspeed_trend(x,model.predict(X_test))
 
