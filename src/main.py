@@ -10,26 +10,16 @@ def main():
   processor = DataProcessor(file_path)
   processor.load_data()
   clean_data=processor.clean_data()
-# prints all the data looks weird though
+
   pd.set_option('display.max_rows', None)  # Show all rows
   pd.set_option('display.max_columns', None)  # Shows all columns
   print(clean_data)
   x, y = processor.get_features_and_target()
   X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=2)
-# prints the first 5 features or targets for testing
+  # prints the first 15 features and targets for testing
   print("Features: ", X_train[:15])
   print("Target:", y_train)
 
-# Temperature prediction
-
-# Clustering
-
-
-
-  # Anomaly detection
-
-  #Wind speed stuff
-  #test = X_train[:15] if len(X_train) > 15 else X_train
   model = WindSpeedPredictor()
 
   model.fit(X_train, y_train)
