@@ -46,7 +46,7 @@ def main():
   print("Anomalies: ", anomaly_detector.predict(X_test))
 
   #Anomalies graph
-  Visualizer.plot_anomalies(X_train, anomaly_detector.predict(X_test))
+  Visualizer.plot_anomalies(X_train, anomaly_detector.predict(X_train))
   #clustering graph
   Visualizer.plot_clustered_data(X_test, clustering.predict(X_test))
   #Predictions Graph
