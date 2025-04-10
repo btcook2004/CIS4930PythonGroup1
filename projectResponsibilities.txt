@@ -1,8 +1,0 @@
-BrandonC + Jillian: Data Processing to load, clean, and normalize
-Jillian + Griffin: Machine Learning Algorithms
-Jillian + Griffin: Visualization module with three tyrpes of plots
-BrandonC + BrandonS: CLI or GUI
-All: Unit tests
-BrandonC + BrandonS: ReadMe
-BrandonS: Report on Algorithms
-All: Present
