@@ -59,7 +59,7 @@ class HurricaneClustering(BaseEstimator, ClusterMixin):
     Fits the KMeans model to the data
     
     Parameters:
-    - X: np.array, features from the data processor
+    - X: np.array, all the data we need from the data processor
     - y: not used for the clustering algorithm
     '''
     def fit(self, X, y=None):
