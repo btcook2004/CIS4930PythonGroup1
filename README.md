@@ -1,5 +1,4 @@
 ```markdown
-#NOT DONE
 # Climate Change Impact Analyzer
 
 This project analyzes climate data, implements predictive algorithms, and visualizes results.
@@ -31,7 +30,8 @@ python -m unittest discover tests
 - `data/`: Climate data (CSV/JSON format)
 - `requirements.txt`: Project dependencies
 - `README.md`: Project documentation
+
 ## Project features
-- 
--
--
+- Loads and cleans data
+- Uses machine learning for prediction
+- Displays the data on interactive graphs
