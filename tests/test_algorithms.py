@@ -14,7 +14,7 @@ class TestWindSpeedPredictor(unittest.TestCase):
     def setUp(self):
         X = np.array([[10, 30], [20, 60], [30, 90], [40, 120], [50, 150]])
         y = np.array([100, 200, 300, 400, 500])
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=2)
         self.model = WindSpeedPredictor()
         
     def test_model_initialization(self):
@@ -22,7 +22,6 @@ class TestWindSpeedPredictor(unittest.TestCase):
     
     def test_fit_method(self):
         self.model.fit(self.X_train, self.y_train)
-        # Check if the inner LinearRegression model has been fitted
         self.assertTrue(hasattr(self.model.model, 'coef_'))
 
     def test_predict_method(self):
