@@ -87,7 +87,7 @@ def handle_view_data(clean_data, x, X_train, X_test, y_train):
             anomaly_detector.model.set_params(n_neighbors=n_neighbors)
             anomaly_detector.fit(X_train)
             Visualizer.plot_anomalies(x, anomaly_detector.predict(x))
-
+          
         elif view_choice == "5":
             break
 
