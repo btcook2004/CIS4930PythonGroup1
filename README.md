@@ -1,5 +1,4 @@
 ```markdown
-#NOT DONE
 # Climate Change Impact Analyzer
 
 This project analyzes climate data, implements predictive algorithms, and visualizes results.
