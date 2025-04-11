@@ -12,7 +12,7 @@ This project analyzes climate data, implements predictive algorithms, and visual
  - macOS/Linux: `source venv/bin/activate`
 4. Install dependencies: `pip install -r requirements.txt`
 
-## USage
+## Usage
 
 Run the main script:
 python src/main.py
